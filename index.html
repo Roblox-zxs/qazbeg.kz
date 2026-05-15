@@ -1,193 +1,173 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Inter, Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAZBEG — бег как платформа роста</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-body {
-  background: #0b0f14;
-  color: #e6eef6;
-}
+<header class="hero" id="top">
+  <div class="container hero-inner">
+    <span class="badge">Беговой клуб нового формата</span>
 
-/* HERO */
-.hero {
-  height: 100vh;
-  background:
-    linear-gradient(
-      rgba(11,15,20,0.7),
-      rgba(11,15,20,0.85)
-    ),
-    url('img/hero.jpg') center top / cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    <h1 class="hero-title">QAZBEG</h1>
+    <p class="hero-subtitle">Бег как платформа роста</p>
 
-.hero-inner {
-  text-align: center;
-  max-width: 900px;
-  padding: 40px;
-}
+    <p class="hero-slogan">
+      Брось вызов себе · Радуйся победам · Делись улыбками
+    </p>
 
-.badge {
-  display: inline-block;
-  background: linear-gradient(90deg, #ffd54f, #38bdf8);
-  color: #0b0f14;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
+    <div class="hero-actions">
+      <a href="#contacts" class="btn btn-primary">Присоединиться к команде →</a>
+      <a href="#about" class="btn btn-ghost">Узнать больше</a>
+    </div>
+  </div>
+</header>
 
-.hero h1 {
-  font-size: clamp(48px, 7vw, 84px);
-}
+<main>
 
-.hero-subtitle {
-  font-size: 20px;
-  opacity: 0.85;
-  margin-top: 8px;
-}
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">Мы — команда, заряженная на бег</h2>
 
-.hero-slogan {
-  margin: 30px 0;
-  font-size: 18px;
-  opacity: 0.95;
-}
+      <div class="grid cards">
+        <article class="card">
+          <h3>Бегаем вместе</h3>
+          <p>Заряжаем энергией, поддержкой и командным духом</p>
+        </article>
 
-.hero-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 16px 36px;
-  border-radius: 40px;
-  background: linear-gradient(90deg, #ffd54f, #38bdf8);
-  color: #0b0f14;
-  text-decoration: none;
-  font-weight: 700;
-  transition: 0.3s;
-}
+        <article class="card">
+          <h3>Дружеский финиш</h3>
+          <p>Эмоции победы, радость достижения и ощущение единства</p>
+        </article>
 
-.hero-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(56,189,248,0.35);
-}
+        <article class="card">
+          <h3>Вне трассы</h3>
+          <p>Общение, новые знакомства и настоящие связи</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-/* BLOCKS */
-.block {
-  max-width: 1100px;
-  margin: auto;
-  padding: 100px 20px;
-}
+  <!-- VISUAL -->
+  <section class="section section-accent">
+    <div class="container">
+      <p class="lead">
+        Наши участники регулярно выходят на старты, участвуют в марафонах и массовых забегах,
+        создавая яркое и заметное визуальное присутствие для брендов и партнёров.
+      </p>
+    </div>
+  </section>
 
-.block h2 {
-  font-size: 38px;
-  margin-bottom: 40px;
-}
+  <!-- FORMAT -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Уникальный формат</h2>
 
-.big-text {
-  font-size: 22px;
-  max-width: 900px;
-}
+      <div class="grid cards">
+        <article class="card card-highlight">
+          <h3>Беговой клуб</h3>
+          <p>Регулярные тренировки, старты и участие в городских событиях</p>
+        </article>
 
-.highlight {
-  margin-top: 25px;
-  font-size: 22px;
-  color: #ffd54f;
-}
+        <article class="card card-highlight">
+          <h3>После забега</h3>
+          <p>Символический напиток, неформальное общение и обмен эмоциями</p>
+        </article>
 
-/* ACCENT */
-.accent {
-  background: linear-gradient(135deg, #0f172a, #020617);
-  border-left: 4px solid #38bdf8;
-}
+        <article class="card card-highlight">
+          <h3>Запоминающийся формат</h3>
+          <p>Легко привлекает внимание аудитории, медиа и социальных сетей</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-/* CARDS */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
+  <!-- MISSION -->
+  <section class="section section-accent">
+    <div class="container">
+      <h2 class="section-title">Наша миссия</h2>
 
-.card {
-  background: #020617;
-  padding: 40px;
-  border-radius: 20px;
-  transition: 0.4s;
-}
+      <p class="lead">
+        Объединять людей в поддерживающее беговое сообщество, где каждый развивается
+        в своём темпе и не остаётся один.
+      </p>
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 0 0 2px rgba(255,213,79,0.7),
-    0 25px 60px rgba(56,189,248,0.25);
-}
+      <p class="highlight">Бег — источник энергии, здоровья и уверенности</p>
+    </div>
+  </section>
 
-.highlight-card {
-  background: linear-gradient(180deg, #020617, #020617);
-}
+  <!-- BRANDS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Для брендов и партнёров</h2>
 
-.brand-card h3 {
-  color: #ffd54f;
-}
+      <div class="grid cards">
+        <article class="card">
+          <h3 class="accent-title">Видимость на каждом старте</h3>
+          <p>Брендированная экипировка, флаги и визуальные акценты на марафонах и забегах</p>
+        </article>
 
-/* TEAM */
-.team {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
+        <article class="card">
+          <h3 class="accent-title">Лояльная аудитория</h3>
+          <p>Активное и вовлечённое сообщество, которое доверяет партнёрам</p>
+        </article>
 
-.team img {
-  width: 100%;
-  border-radius: 20px;
-}
+        <article class="card">
+          <h3 class="accent-title">Долгосрочное партнёрство</h3>
+          <p>Глубокая интеграция бренда в жизнь команды и регулярные касания с аудиторией</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-/* CONTACTS */
-.contacts-dark {
-  background: linear-gradient(180deg, #020617, #020617);
-  padding: 120px 20px;
-  text-align: center;
-}
+  <!-- TEAM -->
+  <section class="section section-accent">
+    <div class="container">
+      <h2 class="section-title">Наша команда</h2>
 
-.contacts-subtitle {
-  opacity: 0.85;
-  margin-top: 10px;
-}
+      <div class="grid team">
+        <figure class="photo">
+          <img src="QB1.jpeg" alt="QAZBEG команда" loading="lazy" />
+        </figure>
+        <figure class="photo">
+          <img src="QB2.jpeg" alt="QAZBEG команда" loading="lazy" />
+        </figure>
+        <figure class="photo">
+          <img src="QB3.jpeg" alt="QAZBEG команда" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
 
-.contacts {
-  max-width: 1000px;
-  margin: 60px auto 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
+</main>
 
-.contacts a {
-  background: #0b0f14;
-  padding: 45px;
-  border-radius: 22px;
-  color: #e6eef6;
-  text-decoration: none;
-  transition: 0.4s;
-}
+<footer class="footer" id="contacts">
+  <div class="container">
+    <h2 class="section-title footer-title">Связаться с нами</h2>
 
-.contacts a:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 0 0 2px #38bdf8,
-    0 20px 50px rgba(56,189,248,0.25);
-}
+    <p class="footer-subtitle">
+      Готовы к сотрудничеству, партнёрствам и новым идеям
+    </p>
 
-/* ANIMATION */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
-}
+    <div class="grid contacts">
+      <a class="contact-card" href="https://instagram.com/qazbeg.kz" target="_blank" rel="noreferrer">
+        Instagram<br><strong>@qazbeg.kz</strong>
+      </a>
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+      <a class="contact-card" href="mailto:firstlinekz@gmail.com">
+        Email<br><strong>firstlinekz@gmail.com</strong>
+      </a>
+
+     
+    </div>
+
+    <a class="to-top" href="#top">↑ Наверх</a>
+  </div>
+</footer>
+
+</body>
+</html>
