@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<!-- Добавили id="hero-section" -->
-<header class="hero" id="hero-section">
+<header class="hero" id="top">
   <div class="container hero-inner">
     <span class="badge">Беговой клуб нового формата</span>
 
@@ -131,15 +130,17 @@
       <h2 class="section-title">Наша команда</h2>
 
       <div class="grid team">
-        <!-- Добавили id для каждой картинки -->
+        <!-- ФОТО 1 -->
         <figure class="photo">
-          <img id="img-qb1" src="QB1.jpeg" alt="QAZBEG команда" loading="lazy" />
+          <img src="WhatsApp Image 2026-05-22 at 12.41.36 (1).jpeg" alt="QAZBEG команда" loading="lazy" />
         </figure>
+        <!-- ФОТО 2 -->
         <figure class="photo">
-          <img id="img-qb2" src="QB2.jpeg" alt="QAZBEG команда" loading="lazy" />
+          <img src="WhatsApp Image 2026-05-22 at 12.41.37.jpeg" alt="QAZBEG команда" loading="lazy" />
         </figure>
+        <!-- ФОТО 3 -->
         <figure class="photo">
-          <img id="img-qb3" src="QB3.jpeg" alt="QAZBEG команда" loading="lazy" />
+          <img src="WhatsApp Image 2026-05-22 at 12.41.37 (1).jpeg" alt="QAZBEG команда" loading="lazy" />
         </figure>
       </div>
     </div>
@@ -169,54 +170,6 @@
   </div>
 </footer>
 
-<!-- АДМИН ПАНЕЛЬ (Скрыта по умолчанию) -->
-<div id="admin-overlay" class="admin-hidden">
-  
-  <!-- Окно логина -->
-  <div id="admin-login-box" class="admin-modal">
-    <h2 class="section-title" style="font-size: 24px;">Вход в Админку</h2>
-    <input type="text" id="admin-login-input" placeholder="Логин" class="admin-input" />
-    <input type="password" id="admin-pass-input" placeholder="Пароль" class="admin-input" />
-    <p id="admin-error" style="color: #ef4444; display: none; font-size: 14px; margin-bottom: 10px;">Неверный логин или пароль</p>
-    <div class="admin-actions">
-      <button id="btn-login" class="btn btn-primary" style="width: 100%;">Войти</button>
-      <button id="btn-close-login" class="btn btn-ghost" style="width: 100%; margin-top: 10px;">Отмена</button>
-    </div>
-  </div>
-
-  <!-- Окно управления фото -->
-  <div id="admin-dashboard" class="admin-modal" style="display: none;">
-    <h2 class="section-title" style="font-size: 24px;">Управление фото</h2>
-    
-    <div class="admin-file-group">
-      <label>Главный фон (Hero):</label>
-      <input type="file" id="upload-hero" accept="image/*" />
-    </div>
-    
-    <div class="admin-file-group">
-      <label>Фото команды 1:</label>
-      <input type="file" id="upload-qb1" accept="image/*" />
-    </div>
-    
-    <div class="admin-file-group">
-      <label>Фото команды 2:</label>
-      <input type="file" id="upload-qb2" accept="image/*" />
-    </div>
-    
-    <div class="admin-file-group">
-      <label>Фото команды 3:</label>
-      <input type="file" id="upload-qb3" accept="image/*" />
-    </div>
-
-    <div class="admin-actions" style="margin-top: 20px;">
-      <button id="btn-close-dashboard" class="btn btn-primary" style="width: 100%;">Закрыть панель</button>
-      <button id="btn-logout" class="btn btn-ghost" style="width: 100%; margin-top: 10px; color: #ef4444; border-color: #ef4444;">Выйти из аккаунта</button>
-    </div>
-  </div>
-
-</div>
-
-<!-- Подключаем твой будущий скрипт -->
 <script src="script.js"></script>
 </body>
 </html>
