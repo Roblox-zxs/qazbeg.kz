@@ -1,144 +1,254 @@
-// === ТВОЙ СТАРЫЙ КОД ДЛЯ АНИМАЦИИ (ОСТАВЛЯЕМ) ===
-const reveals = document.querySelectorAll('.reveal');
-
-function revealOnScroll() {
-  const h = window.innerHeight;
-  reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < h - 120) {
-      el.classList.add('active');
-    }
-  });
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
 }
 
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
-
-
-// === НОВЫЙ КОД ДЛЯ АДМИНКИ И КАРТИНОК ===
-
-document.addEventListener("DOMContentLoaded", () => {
-  
-  // 1. При загрузке страницы проверяем, есть ли сохраненные фото, и ставим их
-  loadSavedImages();
-
-  // 2. Проверяем адресную строку на наличие "?admin" (например: index.html?admin)
-  const queryString = window.location.search;
-  if (queryString.includes('admin')) {
-    document.getElementById('admin-overlay').classList.remove('admin-hidden');
-  }
-
-  // Находим все нужные элементы интерфейса
-  const overlay = document.getElementById('admin-overlay');
-  const loginBox = document.getElementById('admin-login-box');
-  const dashboard = document.getElementById('admin-dashboard');
-  
-  const loginInput = document.getElementById('admin-login-input');
-  const passInput = document.getElementById('admin-pass-input');
-  const errorMsg = document.getElementById('admin-error');
-  
-  const btnLogin = document.getElementById('btn-login');
-  const btnCloseLogin = document.getElementById('btn-close-login');
-  const btnCloseDashboard = document.getElementById('btn-close-dashboard');
-  const btnLogout = document.getElementById('btn-logout');
-
-  // 3. Логика авторизации
-  btnLogin.addEventListener('click', () => {
-    const login = loginInput.value.trim();
-    const pass = passInput.value.trim();
-
-    if (login === 'admin' && pass === 'admin150909') {
-      // Если данные верны — прячем логин, показываем дашборд
-      loginBox.style.display = 'none';
-      dashboard.style.display = 'block';
-      errorMsg.style.display = 'none';
-      
-      // Очищаем поля ввода для безопасности
-      loginInput.value = '';
-      passInput.value = '';
-    } else {
-      // Если ошибка — показываем красное сообщение
-      errorMsg.style.display = 'block';
-    }
-  });
-
-  // Закрытие окна логина (кнопка Отмена)
-  btnCloseLogin.addEventListener('click', () => {
-    overlay.classList.add('admin-hidden');
-  });
-
-  // Закрытие панели управления
-  btnCloseDashboard.addEventListener('click', () => {
-    overlay.classList.add('admin-hidden');
-  });
-
-  // Выход из админки (Logout)
-  btnLogout.addEventListener('click', () => {
-    dashboard.style.display = 'none';
-    loginBox.style.display = 'block';
-    overlay.classList.add('admin-hidden');
-  });
-
-  // 4. Подключаем функции загрузки для каждого поля
-  setupImageUploader('upload-hero', 'heroBg');
-  setupImageUploader('upload-qb1', 'img-qb1');
-  setupImageUploader('upload-qb2', 'img-qb2');
-  setupImageUploader('upload-qb3', 'img-qb3');
-});
-
-// === ФУНКЦИИ-ПОМОЩНИКИ ===
-
-// Функция настройки загрузчика фото
-function setupImageUploader(inputId, targetId) {
-  const input = document.getElementById(inputId);
-  if (!input) return;
-
-  input.addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const base64Image = e.target.result;
-        
-        // Сохраняем картинку в локальную память браузера
-        localStorage.setItem(targetId, base64Image);
-        
-        // Сразу показываем её на сайте
-        applyImage(targetId, base64Image);
-      };
-      // Читаем файл
-      reader.readAsDataURL(file);
-    }
-  });
+:root{
+  --bg: #0b0f14;
+  --panel: #020617;
+  --text: #e6eef6;
+  --muted: rgba(230,238,246,0.82);
+  --gold: #ffd54f;
+  --blue: #38bdf8;
+  --radius: 20px;
 }
 
-// Функция для установки картинки (на фон или в тег <img>)
-function applyImage(targetId, imageUrl) {
-  if (targetId === 'heroBg') {
-    const hero = document.getElementById('hero-section');
-    if (hero) {
-      // Для главного экрана сохраняем тёмный градиент поверх картинки
-      hero.style.background = `linear-gradient(rgba(11,15,20,0.70), rgba(11,15,20,0.88)), url("${imageUrl}") center top / cover no-repeat`;
-    }
-  } else {
-    // Для фоток команды
-    const imgEl = document.getElementById(targetId);
-    if (imgEl) {
-      imgEl.src = imageUrl;
-    }
-  }
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
 }
 
-// Функция загрузки всех картинок при запуске сайта
-function loadSavedImages() {
-  const savedHero = localStorage.getItem('heroBg');
-  if (savedHero) applyImage('heroBg', savedHero);
+/* Layout */
+.container{
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+}
 
-  const savedImg1 = localStorage.getItem('img-qb1');
-  if (savedImg1) applyImage('img-qb1', savedImg1);
+.section{
+  padding: 90px 0;
+}
 
-  const savedImg2 = localStorage.getItem('img-qb2');
-  if (savedImg2) applyImage('img-qb2', savedImg2);
+.section-accent{
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border-left: 4px solid var(--blue);
+}
 
-  const savedImg3 = localStorage.getItem('img-qb3');
-  if (savedImg3) applyImage('img-qb3', savedImg3);
+.section-title{
+  font-size: clamp(28px, 3.2vw, 40px);
+  margin-bottom: 28px;
+}
+
+.lead{
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--muted);
+  max-width: 900px;
+}
+
+.highlight{
+  margin-top: 20px;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--gold);
+}
+
+/* HERO */
+.hero{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 80px 0;
+  /* ВОТ ЗДЕСЬ ИЗМЕНЕН ФОН */
+  background:
+    linear-gradient(rgba(11,15,20,0.70), rgba(11,15,20,0.88)),
+    url("WhatsApp Image 2026-05-22 at 12.41.36.jpeg") center top / cover no-repeat;
+}
+
+.hero-inner{
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.badge{
+  display: inline-block;
+  background: linear-gradient(90deg, var(--gold), var(--blue));
+  color: #0b0f14;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.hero-title{
+  font-size: clamp(52px, 7vw, 88px);
+  letter-spacing: 0.5px;
+}
+
+.hero-subtitle{
+  margin-top: 8px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.hero-slogan{
+  margin: 26px auto 0;
+  max-width: 780px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.hero-actions{
+  margin-top: 26px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn{
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: transform 0.25s, box-shadow 0.25s, opacity 0.25s;
+}
+
+.btn-primary{
+  background: linear-gradient(90deg, var(--gold), var(--blue));
+  color: #0b0f14;
+}
+
+.btn-ghost{
+  border: 1px solid rgba(230,238,246,0.22);
+  color: var(--text);
+  background: rgba(2,6,23,0.35);
+}
+
+.btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(56,189,248,0.20);
+}
+
+/* Cards grid */
+.grid{
+  display: grid;
+  gap: 26px;
+}
+
+.cards{
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card{
+  background: var(--panel);
+  padding: 34px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(230,238,246,0.06);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.card h3{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p{
+  color: var(--muted);
+}
+
+.card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,213,79,0.35);
+  box-shadow:
+    0 0 0 2px rgba(255,213,79,0.35),
+    0 28px 70px rgba(56,189,248,0.18);
+}
+
+.card-highlight{
+  background: linear-gradient(180deg, #020617, #020617);
+}
+
+.accent-title{
+  color: var(--gold);
+}
+
+/* TEAM */
+.team{
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.photo{
+  background: rgba(2,6,23,0.35);
+  border: 1px solid rgba(230,238,246,0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.photo img{
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s;
+}
+
+.photo:hover img{
+  transform: scale(1.04);
+}
+
+/* Footer / Contacts */
+.footer{
+  background: linear-gradient(180deg, #020617, #020617);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.footer-title{
+  margin-bottom: 10px;
+}
+
+.footer-subtitle{
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.contacts{
+  margin-top: 44px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.contact-card{
+  background: rgba(11,15,20,0.8);
+  padding: 40px;
+  border-radius: 22px;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid rgba(230,238,246,0.06);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.contact-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(56,189,248,0.45);
+  box-shadow: 0 22px 60px rgba(56,189,248,0.18);
+}
+
+.to-top{
+  display: inline-block;
+  margin-top: 40px;
+  color: rgba(230,238,246,0.75);
+  text-decoration: none;
+}
+
+.to-top:hover{
+  color: var(--text);
+}
+
+/* Mobile spacing */
+@media (max-width: 520px){
+  .section{ padding: 70px 0; }
+  .photo img{ height: 260px; }
 }
